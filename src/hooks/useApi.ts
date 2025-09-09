@@ -1,5 +1,5 @@
 // src/hooks/useApi.ts
-import { useQuery, useMutation, type UseQueryOptions } from '@tanstack/react-query';
+import { useMutation, useQuery, type UseQueryOptions } from '@tanstack/react-query';
 
 import axiosInstance from '@/lib/axios';
 
@@ -16,6 +16,7 @@ export function useApiQuery<T>(key: string[], apiFn: ApiFn<T>, options?: UseQuer
 
 // POST/PUT/DELETE wrapper
 export function useApiMutation<T>(apiFn: (data: any) => Promise<T>, onSuccess?: (data: T) => void) {
+  //ts-
   return useMutation({
     mutationFn: apiFn,
     onSuccess,

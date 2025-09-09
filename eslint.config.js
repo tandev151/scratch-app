@@ -40,29 +40,33 @@ export default tseslint.config(
       ...jsxA11y.configs.recommended.rules, // << Thêm bộ quy tắc a11y
       ...prettierConfig.rules, // << QUAN TRỌNG: Tắt các quy tắc xung đột với Prettier
 
-      // Các quy tắc tùy chỉnh
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
-
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
       // Quy tắc sắp xếp import
       'import/order': [
         'error',
         {
           groups: [
             'builtin',
-            'parent',
-            'internal',
             'external',
+            'internal',
+            'parent',
             'sibling',
             'index',
             'object',
             'type',
           ],
           'newlines-between': 'always',
-          alphabetize: { order: 'desc', caseInsensitive: true },
+          alphabetize: { order: 'asc', caseInsensitive: true },
         },
       ],
+      'no-duplicate-imports': 'error',
     },
   },
 );

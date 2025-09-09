@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+:root {
+  /* Font family */
+}
+
+@theme {
+  --breakpoint-3xl: 120rem;
+  --color-red-50: oklch(0.971 0.713 19.38);
+}

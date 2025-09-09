@@ -1,5 +1,6 @@
-import React from 'react';
-
 export default function Home() {
-  return <div>Home</div>;
+  const title = 'Hello' + 'World';
+  console.log(title);
+
+  return <div>{title}</div>;
 }

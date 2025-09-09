@@ -12,6 +12,7 @@ function App() {
   const [count, setCount] = useState(0);
   const unusedVariable = 'hello'; // << Lỗi ESLint: Biến không được sử dụng
   const name = 'World';
+
   return (
     <>
       <Home />

@@ -11,7 +11,7 @@ import viteLogo from '/vite.svg';
 function App() {
   const [count, setCount] = useState(0);
   const unusedVariable: number = 'hello'; // << Lỗi ESLint: Biến không được sử dụng
-  const name = 'World';
+  const name: boolean = 'World';
 
   return (
     <>

@@ -1,11 +1,11 @@
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider, QueryCache } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import type { ReactNode } from 'react';
 
 // --- DEFINE GLOBAL ERROR HANDLER ---
 const handleGlobalError = (error: any) => {
-  // Logic PELOW:
+  // TODO: handle error at below area
   import.meta.env.DEV && console.error('Global Error From React Query:', error);
 };
 

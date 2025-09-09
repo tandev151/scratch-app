@@ -19,7 +19,7 @@ const axiosInstance = axios.create({
   },
 });
 
-// Add a request interceptor
+// Configure request interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
     // Do something before the request is sent
@@ -32,51 +32,51 @@ axiosInstance.interceptors.request.use(
   },
 );
 
-// 3. CẤU HÌNH RESPONSE INTERCEPTOR
+// Configure response interceptor
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    // Nếu response thành công (status code 2xx)
-    // Trả về response.data để không cần gọi .data ở nơi sử dụng
+    // If success response
+    // Return response.data to don't need to ".data"
     return response.data;
   },
   (error: AxiosError) => {
-    // Xử lý các lỗi HTTP một cách tập trung
+    // Handle some HTTP Error
     if (error.response) {
       const { status } = error.response;
 
       switch (status) {
         case 401:
-          // Lỗi Unauthorized: token không hợp lệ hoặc hết hạn
-          // Thực hiện logout, xóa token và chuyển hướng về trang đăng nhập
+          // Unauthorized: Token expired or invalid
+          // TODO: log out, clear token, redirect login page
           console.error('Unauthorized (401). Redirecting to login...');
-          // ví dụ: authStore.logout(); window.location.href = '/login';
+
           break;
         case 403:
-          // Lỗi Forbidden: không có quyền truy cập tài nguyên
+          // Forbidden Error: Unauthorize with resources
           console.error('Forbidden (403). Access denied.');
-          // Hiển thị thông báo cho người dùng
+
           break;
         case 404:
-          // Lỗi Not Found
+          //  Not Found
           console.error('Resource not found (404).');
           break;
         case 500:
         case 502:
         case 503:
-          // Lỗi từ server
+          // Internal Server Error
           console.error(`Server error (${status}). Please try again later.`);
-          // Hiển thị trang báo lỗi server
+
           break;
         default:
-          // Các lỗi khác
+          // Other error
           console.error(`An error occurred: ${error.message}`);
       }
     } else {
-      // Lỗi không liên quan đến response (ví dụ: lỗi mạng)
+      // Error doesn't relate to response
       console.error('Network error or no response:', error.message);
     }
 
-    // Luôn trả về Promise.reject để chuỗi promise/try-catch ở nơi gọi có thể bắt được lỗi
+    // Always return Promise.reject in order to promise/try-catch at calling place can catch error
     return Promise.reject(error);
   },
 );

@@ -2,7 +2,9 @@ import { Button } from 'antd';
 import { useState } from 'react';
 
 import reactLogo from '@/assets/react.svg';
+import { PrimaryButton } from '@/components/common';
 import Home from '@/pages/Home';
+
 import './App.css';
 
 import viteLogo from '/vite.svg';
@@ -13,6 +15,7 @@ function App() {
   return (
     <>
       <div>
+        <PrimaryButton>Alo</PrimaryButton>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>

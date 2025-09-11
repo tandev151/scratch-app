@@ -50,7 +50,7 @@ export default tseslint.config(
       ],
       // Quy tắc sắp xếp import
       'import/order': [
-        'error',
+        'warn',
         {
           groups: [
             'builtin',

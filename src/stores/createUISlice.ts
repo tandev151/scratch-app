@@ -7,5 +7,5 @@ export interface UISlice {
 
 export const createUISlice: StateCreator<UISlice> = (set) => ({
   step: 0,
-  updateStep: (newStep) => set((state) => ({ step: newStep })),
+  updateStep: (newStep) => set(() => ({ step: newStep })),
 });

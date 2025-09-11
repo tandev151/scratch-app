@@ -33,20 +33,37 @@ export default defineConfig(({ command, mode }) => {
   }
 
   // Cấu hình cho môi trường Production
-  // if (command === 'build' || mode === 'production') {
-  //   return {
-  //     ...commonConfig,
-  //     build: {
-  //       sourcemap: 'hidden', // Tạo source map nhưng không link trong file bundle
-  //       // rollupOptions: {
-  //       //   // Thêm plugin phân tích bundle chỉ khi build
-  //       //   plugins: [visualizer({ open: true })],
-  //       // },
-  //     },
-  //     // Có thể đặt base path cho production nếu bạn deploy vào một thư mục con
-  //     // base: '/my-app/',
-  //   };
-  // }
+  if (command === 'build' || mode === 'production') {
+    return {
+      ...commonConfig,
+      build: {
+        sourcemap: 'hidden', // Tạo source map nhưng không link trong file bundle
+        rollupOptions: {
+          // Thêm plugin phân tích bundle chỉ khi build
+          output: {
+            manualChunks(id) {
+              // Group React and ReactDOM into a 'vendor-react' chunk
+              // if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+              //   console.log({ vendor_React_id: id });
+              //   return 'vendor-react';
+              // }
+
+              // All other node_modules go into a generic 'vendor' chunk
+              if (id.includes('node_modules')) {
+                console.log({ vendor_id: id });
+                return 'vendor';
+              }
+              // Let Rollup handle the rest (your application code)
+              // Returning `undefined` or nothing allows Rollup to decide
+            },
+          },
+        },
+        chunkSizeWarningLimit: 1000,
+      },
+      // Có thể đặt base path cho production nếu bạn deploy vào một thư mục con
+      // base: '/my-app/',
+    };
+  }
 
   return commonConfig;
 });

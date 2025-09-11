@@ -1,0 +1,12 @@
+.primary-btn {
+  background-color: rgb(33, 8, 87);
+  color: white;
+}
+
+.customBtn div {
+  color: white;
+}
+
+.secondary-btn {
+  background-color: transparent;
+}

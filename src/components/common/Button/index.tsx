@@ -1,6 +1,7 @@
 import { Button as AntdButton, type ButtonProps as AntdButtonProps } from 'antd';
 import React from 'react';
 
+import styles from './Button.module.css';
 //1. DEFINE TYPE
 
 // Extends Antd Button's Props with our's prop 'variant'
@@ -14,7 +15,11 @@ const Button: React.FC<AntdButtonProps> = (props: AntdButtonProps) => {
 };
 
 export const PrimaryButton: React.FC<AntdButtonProps> = (props) => {
-  return <Button variant="solid" color="purple" {...props} />;
+  return <Button variant="solid" className={styles['primary-btn']} {...props} />;
+};
+
+export const SecondaryButton: React.FC<AntdButtonProps> = (props) => {
+  return <Button variant="outlined" className={styles['secondary-btn']} {...props} />;
 };
 
 // 4. EXPORT COMPONENT WRAPPER CƠ SỞ LÀM DEFAULT

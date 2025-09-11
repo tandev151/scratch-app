@@ -12,6 +12,7 @@ export default function HomePage() {
 
   return (
     <div>
+      Hello
       {title}
       <PrimaryButton onClick={() => changeLanguage('en')}>EN</PrimaryButton>
       <SecondaryButton onClick={() => changeLanguage('vi')}>VN</SecondaryButton>

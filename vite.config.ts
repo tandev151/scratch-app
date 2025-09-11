@@ -10,13 +10,28 @@ export default defineConfig(({ command, mode }) => {
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        // Sử dụng import.meta.url để có đường dẫn an toàn và chính xác
+        // Use import.meta.url in order to have exact and safe path
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
+    test: {
+      globals: true, // Allow use describe, it, expect...without importing
+      environment: 'jsdom', // emualate DOM for React
+      setupFiles: './src/setupTests.ts', // file setup for RTL
+      css: true, // allow import CSS in file
+      coverage: {
+        reporter: ['text', 'json', 'html'], // Configure report for coverage
+        lines: 80,
+        branches: 80,
+        functions: 80,
+        statements: 80,
+      },
+      include: ['src/__tests__/**/*.test.{ts,tsx}', 'src/**/*.test.{ts,tsx}'], // chỉ tìm test ở đây
+      exclude: ['node_modules', 'dist'],
+    },
   };
 
-  // Cấu hình cho môi trường Development
+  // Specifically configure for Development
   if (command === 'serve' || mode === 'development') {
     return {
       ...commonConfig,
@@ -32,7 +47,7 @@ export default defineConfig(({ command, mode }) => {
     };
   }
 
-  // Cấu hình cho môi trường Production
+  // Specifically configure for Production
   if (command === 'build' || mode === 'production') {
     return {
       ...commonConfig,
@@ -50,7 +65,6 @@ export default defineConfig(({ command, mode }) => {
 
               // All other node_modules go into a generic 'vendor' chunk
               if (id.includes('node_modules')) {
-                console.log({ vendor_id: id });
                 return 'vendor';
               }
               // Let Rollup handle the rest (your application code)

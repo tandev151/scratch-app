@@ -10,7 +10,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y'; // << Thêm vào
 export default tseslint.config(
   // Bỏ qua các file/thư mục trên toàn cục
   {
-    ignores: ['dist', 'eslint.config.js'],
+    ignores: ['dist', 'eslint.config.js', 'node_modules', 'coverage'],
   },
 
   // Cấu hình chính cho các file TypeScript/React

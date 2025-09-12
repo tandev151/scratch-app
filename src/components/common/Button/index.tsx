@@ -22,5 +22,5 @@ export const SecondaryButton: React.FC<AntdButtonProps> = (props) => {
   return <Button variant="outlined" className={styles['secondary-btn']} {...props} />;
 };
 
-// 4. EXPORT COMPONENT WRAPPER CƠ SỞ LÀM DEFAULT
+// 4. EXPORT DEFAULT BASE COMPONENT
 export default Button;

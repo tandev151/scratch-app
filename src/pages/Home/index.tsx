@@ -10,12 +10,23 @@ export default function HomePage() {
     i18n.changeLanguage(lng);
   };
 
+  const changeTheme = (theme: string) => {
+    const body = document.body;
+    if (theme === 'dark') {
+      body.classList.add('dark');
+    } else {
+      body.classList.toggle('dark');
+    }
+  };
+
   return (
-    <div>
+    <div className="bg-primary text-text-primary">
       Hello
       {title}
       <PrimaryButton onClick={() => changeLanguage('en')}>EN</PrimaryButton>
       <SecondaryButton onClick={() => changeLanguage('vi')}>VN</SecondaryButton>
+      <PrimaryButton onClick={() => changeTheme('light')}>Light</PrimaryButton>
+      <SecondaryButton onClick={() => changeTheme('dark')}>Dark</SecondaryButton>
     </div>
   );
 }

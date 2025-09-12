@@ -52,7 +52,6 @@ export default defineConfig(({ command, mode }) => {
     return {
       ...commonConfig,
       build: {
-        sourcemap: 'hidden', // Tạo source map nhưng không link trong file bundle
         rollupOptions: {
           // Thêm plugin phân tích bundle chỉ khi build
           output: {
